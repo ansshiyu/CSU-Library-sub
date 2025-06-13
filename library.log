@@ -157,3 +157,5 @@
 2025-06-12 03:14:03,781	ERROR	An error occurred: 该空间当前状态不可预约
 2025-06-12 22:00:13,984	INFO	None
 2025-06-12 22:00:13,984	ERROR	An error occurred: None
+2025-06-13 11:57:03,748	INFO	该空间当前状态不可预约
+2025-06-13 11:57:03,748	ERROR	An error occurred: 该空间当前状态不可预约
