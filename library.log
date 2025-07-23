@@ -222,3 +222,5 @@
 2025-07-21 22:01:20,628	ERROR	An error occurred: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 2025-07-22 22:00:08,646	INFO	该空间当前状态不可预约
 2025-07-22 22:00:08,646	ERROR	An error occurred: 该空间当前状态不可预约
+2025-07-23 22:00:09,379	INFO	该空间当前状态不可预约
+2025-07-23 22:00:09,380	ERROR	An error occurred: 该空间当前状态不可预约
