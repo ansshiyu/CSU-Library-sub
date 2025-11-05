@@ -2,40 +2,52 @@ name: CSU Library Reserve
 
 on:
   workflow_dispatch:
-
   schedule:
-    - cron: '45 21 * * *'  # 每天21:45 (UTC) 触发, 对应北京时间 5:45
+    - cron: '45 21 * * *' # 每天21:45 (UTC) 触发, 对应北京时间 5:45
+
+concurrency:  # 添加并发控制以防止冲突
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   reserve:
     runs-on: ubuntu-latest
-    permissions: # 添加这一行
-      contents: write # 添加这一行，注意这里的缩进
+    permissions:
+      contents: write  # 允许内容写入
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4  # 更新到v4，并设置完整拉取深度
+      with:
+        fetch-depth: 0
 
     - name: Install Python
       run: |
         sudo apt update && \
-        sudo apt install python3
-      
-    - name: requirements
+        sudo apt install -y python3 python3-pip  # 添加-y以非交互安装，并包括pip
+
+    - name: Install requirements
       run: |
         pip3 install -r requirements.txt
-        
+
     - name: Reserve
       run: |
         user='${{ secrets.USER }}'
         pwd='${{ secrets.PWD }}'
         python3 helper.py --action 'reserve' --userid $user --password $pwd
-    - name: Commit
+
+    - name: Commit changes
       run: |
         git config --global user.email founder.yu@foxmail.com
         git config --global user.name founder-yu
         git add .
-        git commit -m "Update library.log" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+        git commit -m "Update library.log" -a || echo "No changes to commit"  # 添加或处理无变更情况
+
+    - name: Sync and push changes
+      run: |
+        git fetch origin  # 拉取最新远程变更
+        git rebase origin/main  # 变基以同步
+    - uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main  # 显式指定分支
+        force_with_lease: true  # 保留安全推送
