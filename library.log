@@ -412,3 +412,5 @@
 2025-11-22 22:00:13,323	INFO	预约成功<br/>您已违约1次,详情请登录web端或联系管理员
 2025-11-23 22:00:06,688	INFO	预约成功<br/>您已违约2次,详情请登录web端或联系管理员
 2025-11-24 22:00:31,381	ERROR	An error occurred: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2025-11-25 22:00:08,155	INFO	存在黑名单用户，不可执行预约操作
+2025-11-25 22:00:08,156	ERROR	An error occurred: 存在黑名单用户，不可执行预约操作
