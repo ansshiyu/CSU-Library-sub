@@ -677,3 +677,4 @@
 2026-06-01 23:15:39,621	INFO	预约成功
 2026-06-02 23:20:36,807	INFO	该空间当前状态不可预约
 2026-06-02 23:20:36,807	ERROR	An error occurred: 该空间当前状态不可预约
+2026-06-03 23:22:19,784	ERROR	An error occurred: 'access_token'
